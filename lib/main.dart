@@ -1,5 +1,6 @@
-import 'package:PayProof/screens/splash.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/splash.dart';
 
 void main() {
   runApp(const MainApp());
