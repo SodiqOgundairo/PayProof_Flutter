@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:payroof/helpers/styles.dart';
+import 'package:payroof/screens/signup.dart';
+
+import 'login.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,22 +35,38 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  foregroundColor: white,
-                ),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const Login();
+                    },
+                  ));
+                },
+                style: pryBtn,
                 child: const Text('Login'),
               ),
             ),
-            const Text('Or'),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'OR',
+              style: body,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                      foregroundColor: primaryColor,
-                      side: const BorderSide(color: primaryColor)),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const Signup();
+                      },
+                    ));
+                  },
+                  style: pryBtnOutline,
                   child: const Text('SignUp')),
             )
           ],
