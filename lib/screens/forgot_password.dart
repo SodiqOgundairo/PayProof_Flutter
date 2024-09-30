@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:payroof/screens/create_password.dart';
 import 'package:payroof/screens/login.dart';
 
 import '../helpers/styles.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _SignupState extends State<Signup> {
-  bool _isChecked = false; // State variable to track checkbox state
+class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +23,16 @@ class _SignupState extends State<Signup> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Signup',
+                'Forgot Password',
                 style: header,
               ),
               const Text(
-                "Let's get your account set up to enjoy the goodies",
+                "Let's secure your account!",
                 style: body,
               ),
               const SizedBox(height: 10),
               const Image(
-                image: AssetImage('assets/images/signup.png'),
+                image: AssetImage('assets/images/createPassword.png'),
                 height: 200, // Set a fixed height for the image
               ),
               const SizedBox(height: 20),
@@ -43,34 +40,8 @@ class _SignupState extends State<Signup> {
                 children: [
                   TextFormField(
                     decoration: inputTheme.copyWith(
-                      labelText: 'Name',
+                      labelText: 'Emai;/phone number',
                     ),
-                  ),
-                  TextFormField(
-                    decoration: inputTheme.copyWith(
-                      labelText: 'Phone Number',
-                    ),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                  TextFormField(
-                    decoration: inputTheme.copyWith(
-                      labelText: 'Email',
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _isChecked,
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            _isChecked = newValue!;
-                          });
-                        },
-                      ),
-                      const Text('I agree to the terms and conditions'),
-                    ],
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -78,16 +49,13 @@ class _SignupState extends State<Signup> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return const CreatePassword();
+                            return const Login();
                           },
                         ));
                       },
                       style: pryBtn,
-                      child: const Text('Continue'),
+                      child: const Text('Reset Password'),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   TextButton(
                     onPressed: () {
@@ -97,12 +65,11 @@ class _SignupState extends State<Signup> {
                         },
                       ));
                     },
-                    child: const Text(
-                      "Already have an account? Let's get you signed in!",
-                      style: small,
-                      textAlign: TextAlign.center,
-                    ),
-                  )
+                    child: const Text('Back to Login'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
               const SizedBox(height: 10),

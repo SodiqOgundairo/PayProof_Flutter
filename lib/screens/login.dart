@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:payroof/helpers/styles.dart';
+import 'package:payroof/screens/dashboard.dart';
+import 'package:payroof/screens/forgot_password.dart';
 import 'package:payroof/screens/signup.dart';
 
 class Login extends StatefulWidget {
@@ -57,13 +59,29 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return const Dashboard();
+                            },
+                          ),
+                          (Route<dynamic> route) =>
+                              false, // This condition ensures all previous routes are removed
+                        );
+                      },
                       style: pryBtn,
                       child: const Text('Login'),
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const ForgotPassword();
+                        },
+                      ));
+                    },
                     child: const Text('Forgot password'),
                   ),
                   const SizedBox(
@@ -79,7 +97,7 @@ class _LoginState extends State<Login> {
                     },
                     child: const Text(
                       'Don’t have an account? Let’s set up an account for you.It takes less than a minute.',
-                      style: body,
+                      style: small,
                       textAlign: TextAlign.center,
                     ),
                   )

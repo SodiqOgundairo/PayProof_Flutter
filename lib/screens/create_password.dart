@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:payroof/screens/create_password.dart';
 import 'package:payroof/screens/login.dart';
 
 import '../helpers/styles.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class CreatePassword extends StatefulWidget {
+  const CreatePassword({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<CreatePassword> createState() => _CreatePasswordState();
 }
 
-class _SignupState extends State<Signup> {
-  bool _isChecked = false; // State variable to track checkbox state
+class _CreatePasswordState extends State<CreatePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +24,16 @@ class _SignupState extends State<Signup> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Signup',
+                'Create Password',
                 style: header,
               ),
               const Text(
-                "Let's get your account set up to enjoy the goodies",
+                "Let's secure your account!",
                 style: body,
               ),
               const SizedBox(height: 10),
               const Image(
-                image: AssetImage('assets/images/signup.png'),
+                image: AssetImage('assets/images/createPassword.png'),
                 height: 200, // Set a fixed height for the image
               ),
               const SizedBox(height: 20),
@@ -43,34 +41,25 @@ class _SignupState extends State<Signup> {
                 children: [
                   TextFormField(
                     decoration: inputTheme.copyWith(
-                      labelText: 'Name',
-                    ),
-                  ),
-                  TextFormField(
-                    decoration: inputTheme.copyWith(
-                      labelText: 'Phone Number',
+                      counter: const Text(''),
+                      labelText: 'Password',
                     ),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
+                    obscureText: true,
+                    maxLength: 4,
                   ),
                   TextFormField(
                     decoration: inputTheme.copyWith(
-                      labelText: 'Email',
+                      counter: const Text(''),
+                      labelText: 'Confirm Password',
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _isChecked,
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            _isChecked = newValue!;
-                          });
-                        },
-                      ),
-                      const Text('I agree to the terms and conditions'),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
                     ],
+                    obscureText: true,
+                    maxLength: 4,
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -78,31 +67,21 @@ class _SignupState extends State<Signup> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return const CreatePassword();
+                            return const Login();
                           },
                         ));
                       },
                       style: pryBtn,
-                      child: const Text('Continue'),
+                      child: const Text('Signup'),
                     ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Forgot password'),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return const Login();
-                        },
-                      ));
-                    },
-                    child: const Text(
-                      "Already have an account? Let's get you signed in!",
-                      style: small,
-                      textAlign: TextAlign.center,
-                    ),
-                  )
                 ],
               ),
               const SizedBox(height: 10),
